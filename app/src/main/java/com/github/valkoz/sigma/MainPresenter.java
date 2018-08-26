@@ -1,6 +1,7 @@
 package com.github.valkoz.sigma;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.github.valkoz.sigma.model.TransformedItem;
@@ -30,11 +31,16 @@ public class MainPresenter implements MVPMainPresenter {
     }
 
     @Override
-    public void getItems() {
+    public void loadData() {
         if (task == null || task.getStatus() != AsyncTask.Status.RUNNING) {
             task = new LoadTask(view);
             task.execute();
         }
+    }
+
+    @Override
+    public void restoreData(Bundle state, String key) {
+        view.showItems(state.getParcelableArrayList(key));
     }
 
     @Override

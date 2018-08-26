@@ -29,31 +29,25 @@ public class MainActivity extends AppCompatActivity implements MVPMainView {
         initView();
 
         presenter = new MainPresenter();
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            if (InternetConnection.isInternetOn(getApplicationContext())) {
-                presenter.getItems();
-            }
-            else {
-                hideLoading();
-                showError("No Internet access");
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(this::getItems);
         presenter.onCreate(this);
 
+        if (savedInstanceState != null && savedInstanceState.containsKey(KEY))
+            presenter.restoreData(savedInstanceState, KEY);
+        else
+            getItems();
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(KEY)) {
-            showItems(savedInstanceState.getParcelableArrayList(KEY));
+    }
+
+    private void getItems() {
+        if (InternetConnection.isInternetOn(getApplicationContext())) {
+            showLoading();
+            presenter.loadData();
         }
         else {
-            if (InternetConnection.isInternetOn(getApplicationContext())) {
-                showLoading();
-                presenter.getItems();
-            }
-            else {
-                showError("No Internet access");
-            }
+            hideLoading();
+            showError("No Internet access");
         }
-
     }
 
     private void initView() {
