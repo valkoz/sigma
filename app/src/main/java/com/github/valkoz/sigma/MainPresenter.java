@@ -9,6 +9,7 @@ import java.util.List;
 
 public class MainPresenter implements MVPMainPresenter {
 
+    private static final String ERROR_MESSAGE = "No Internet access";
     private MVPMainView view;
     private LoadTask task;
 
@@ -19,6 +20,7 @@ public class MainPresenter implements MVPMainPresenter {
 
     @Override
     public void loadData() {
+        view.showLoading();
         if (task == null || task.getStatus() != AsyncTask.Status.RUNNING) {
             task = new LoadTask(view);
             task.execute();
@@ -36,6 +38,12 @@ public class MainPresenter implements MVPMainPresenter {
         if (task != null && task.getStatus() == AsyncTask.Status.RUNNING) {
             task.cancel(true);
         }
+    }
+
+    @Override
+    public void noInternetAccess() {
+        view.hideLoading();
+        view.showError(ERROR_MESSAGE);
     }
 
     public static class LoadTask extends AsyncTask<String, Void, List<TransformedItem>> {

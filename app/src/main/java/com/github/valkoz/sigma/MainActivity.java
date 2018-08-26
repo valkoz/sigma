@@ -1,8 +1,8 @@
 package com.github.valkoz.sigma;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -40,14 +40,10 @@ public class MainActivity extends AppCompatActivity implements MVPMainView {
     }
 
     private void getItems() {
-        if (InternetConnection.isInternetOn(getApplicationContext())) {
-            showLoading();
+        if (InternetConnection.isInternetOn(getApplicationContext()))
             presenter.loadData();
-        }
-        else {
-            hideLoading();
-            showError("No Internet access");
-        }
+        else
+            presenter.noInternetAccess();
     }
 
     private void initView() {
