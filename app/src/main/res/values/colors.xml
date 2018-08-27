@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#4400AD</color>
     <color name="colorAccent">#FFFFFF</color>
 
-    <color name="textColor">#040404</color>
+    <color name="textColor">#232F34</color>
     <color name="secondaryTextColor">#666666</color>
 </resources>

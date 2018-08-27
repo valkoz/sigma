@@ -12,13 +12,32 @@ import java.util.List;
 @Root(name = "item", strict = false)
 public class Item {
 
-    @Path("title") @Text(required=false) private String title;
+    @Path("title")
+    @Text
+    private String title;
     @Element(name = "guid", required = false) private String guid;
     @Path("link") @Text(required=false) private String link;
-    @Element(name = "description", required = false) private String description;
-    @Element(name = "pubDate", required = false) private String pubDate;
-    @Namespace(prefix = "dc") @Element(name = "creator", required = false) private String creator;
+    @Element(name = "description")
+    private String description;
+    @Element(name = "pubDate")
+    private String pubDate;
+    @Namespace(prefix = "dc")
+    @Element(name = "creator")
+    private String creator;
     @ElementList(name="category", inline=true) private List<Category> categories;
+
+    public Item(String title, String guid, String link, String description, String pubDate, String creator, List<Category> categories) {
+        this.title = title;
+        this.guid = guid;
+        this.link = link;
+        this.description = description;
+        this.pubDate = pubDate;
+        this.creator = creator;
+        this.categories = categories;
+    }
+
+    public Item() {
+    }
 
     public String getTitle() {
         return title;

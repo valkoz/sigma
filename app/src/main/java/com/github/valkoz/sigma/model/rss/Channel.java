@@ -13,12 +13,18 @@ public class Channel {
 
     @Path("title") @Text(required=false)private String title;
     @Path("link") @Text(required=false) private String link;
-    @Element(name = "description") private String description;
-    @Element(name = "language") private String language;
-    @Element(name = "managingEditor") private String managingEditor;
-    @Element(name = "generator") private String generator;
-    @Element(name = "pubDate") private String pubDate;
-    @Element(name = "image") private String image;
+    @Element(name = "description", required = false)
+    private String description;
+    @Element(name = "language", required = false)
+    private String language;
+    @Element(name = "managingEditor", required = false)
+    private String managingEditor;
+    @Element(name = "generator", required = false)
+    private String generator;
+    @Element(name = "pubDate", required = false)
+    private String pubDate;
+    @Element(name = "image", required = false)
+    private String image;
     @ElementList(name = "item", inline = true) private List<Item> items;
 
     public String getTitle() {

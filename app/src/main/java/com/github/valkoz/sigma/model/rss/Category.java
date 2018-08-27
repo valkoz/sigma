@@ -2,9 +2,16 @@ package com.github.valkoz.sigma.model.rss;
 
 import org.simpleframework.xml.Text;
 
-class Category {
+public class Category {
 
     @Text private String name;
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public Category() {
+    }
 
     public String getName() {
         return name;
