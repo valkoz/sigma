@@ -24,23 +24,27 @@ android {
 
 ext {
     supportVersion = "28.0.0-rc01"
+    runnerVersion = "1.0.2"
+    espressoVersion = "3.0.2"
+    simpleXmlVersion = "2.7.1"
+    junitVersion = "4.12"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //support
     implementation "com.android.support:appcompat-v7:$supportVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
-
-    implementation 'org.simpleframework:simple-xml:2.7.1'
-
-    // RecyclerView
     implementation "com.android.support:recyclerview-v7:$supportVersion"
-
-    // CardView
     implementation "com.android.support:cardview-v7:$supportVersion"
+
+    //simpleXML
+    implementation "org.simpleframework:simple-xml:$simpleXmlVersion"
+
+    //tests
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.android.support.test:rules:$runnerVersion"
 
 }
